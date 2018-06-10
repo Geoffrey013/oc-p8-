@@ -41,8 +41,9 @@
 	 * });
 	 */
 	Store.prototype.find = function (query, callback) {
-		console.log("find STORE")
-		if (!callback) {
+        console.log(query);
+
+        if (!callback) {
 			return;
 		}
 
@@ -66,7 +67,6 @@
 	Store.prototype.findAll = function (callback) {
 		callback = callback || function () {};
 		callback.call(this, JSON.parse(localStorage[this._dbName]).todos);
-		console.log("findAll STORE")
 	};
 
 	/**
@@ -82,8 +82,9 @@
 		var todos = data.todos;
 
 		callback = callback || function () {};
+        console.log(updateData);
 
-		// Generate an ID
+        // Generate an ID
 	    var newId = ""; 
 	    var charset = "0123456789";
 
@@ -108,12 +109,11 @@
 
     		// Assign an ID
 			updateData.id = parseInt(newId);
-    
-
 			todos.push(updateData);
+
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, [updateData]);
-		}
+        }
 	};
 
 	/**
@@ -125,19 +125,12 @@
 	Store.prototype.remove = function (id, callback) {
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
-		var todoId;
-		
-		for (var i = 0; i < todos.length; i++) {
-			if (todos[i].id == id) {
-				todoId = todos[i].id;
-			}
-		}
 
-		for (var i = 0; i < todos.length; i++) {
-			if (todos[i].id == todoId) {
-				todos.splice(i, 1);
-			}
-		}
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id == id) {
+                todos.splice(i, 1);
+            }
+        }
 
 		localStorage[this._dbName] = JSON.stringify(data);
 		callback.call(this, todos);

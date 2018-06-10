@@ -68,7 +68,7 @@
 		});
 	};
 
-	/**
+	/**d
 	 * Renders all active tasks
 	 */
 	Controller.prototype.showActive = function () {
@@ -86,7 +86,6 @@
 		self.model.read({ completed: true }, function (data) {
 			self.view.render('showEntries', data);
 		});
-		console.log("showCompleted CONTROLLER")
 	};
 
 	/**
@@ -96,7 +95,7 @@
 	Controller.prototype.addItem = function (title) {
 		var self = this;
 
-		if (title.trim() === '') {
+        if (title.trim() === '') {
 			return;
 		}
 
@@ -113,17 +112,18 @@
 		var self = this;
 		self.model.read(id, function (data) {
 			self.view.render('editItem', {id: id, title: data[0].title});
-		});
+        });
 	};
 
 	/*
 	 * Finishes the item editing mode successfully.
 	 */
 	Controller.prototype.editItemSave = function (id, title) {
-		var self = this;
+        var self = this;
 
-		while (title[0] === " ") {
+        while (title[0] === " ") {
 			title = title.slice(1);
+            console.log(title);
 		}
 
 		while (title[title.length-1] === " ") {
