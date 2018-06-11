@@ -41,8 +41,6 @@
 	 * });
 	 */
 	Store.prototype.find = function (query, callback) {
-        console.log(query);
-
         if (!callback) {
 			return;
 		}
@@ -82,7 +80,6 @@
 		var todos = data.todos;
 
 		callback = callback || function () {};
-        console.log(updateData);
 
         // Generate an ID
 	    var newId = ""; 
