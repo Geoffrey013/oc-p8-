@@ -56,7 +56,7 @@
 			this.storage.find({ id: query }, callback);
 		} else {
 			this.storage.find(query, callback);
-		}
+        }
 	};
 
 	/**
@@ -68,7 +68,7 @@
 	 * @param {function} callback The callback to fire when the update is complete.
 	 */
 	Model.prototype.update = function (id, data, callback) {
-		this.storage.save(data, callback, id);
+        this.storage.save(data, callback, id);
 	};
 
 	/**
@@ -111,7 +111,7 @@
 				todos.total++;
 			});
 			callback(todos);
-		});
+        });
 	};
 
 	// Export to window

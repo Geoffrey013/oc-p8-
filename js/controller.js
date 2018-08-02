@@ -13,7 +13,7 @@
 		self.model = model;
 		self.view = view;
 
-		self.view.bind('newTodo', function (title) {
+        self.view.bind('newTodo', function (title) {
 			self.addItem(title);
 		});
 
@@ -34,7 +34,7 @@
 		});
 
 		self.view.bind('itemToggle', function (item) {
-			self.toggleComplete(item.id, item.completed);
+            self.toggleComplete(item.id, item.completed);
 		});
 
 		self.view.bind('removeCompleted', function () {
@@ -187,7 +187,7 @@
 	 * @param {boolean|undefined} silent Prevent re-filtering the todo items
 	 */
 	Controller.prototype.toggleComplete = function (id, completed, silent) {
-		var self = this;
+        var self = this;
 		self.model.update(id, { completed: completed }, function () {
 			self.view.render('elementComplete', {
 				id: id,
@@ -205,7 +205,7 @@
 	 * Just pass in the event object.
 	 */
 	Controller.prototype.toggleAll = function (completed) {
-		var self = this;
+        var self = this;
 		self.model.read({ completed: !completed }, function (data) {
 			data.forEach(function (item) {
 				self.toggleComplete(item.id, completed, true);
@@ -222,7 +222,7 @@
 	Controller.prototype._updateCount = function () {
 		var self = this;
 		self.model.getCount(function (todos) {
-			self.view.render('updateElementCount', todos.active);
+            self.view.render('updateElementCount', todos.active);
 			self.view.render('clearCompletedButton', {
 				completed: todos.completed,
 				visible: todos.completed > 0
@@ -238,9 +238,10 @@
 	 * @param {boolean|undefined} force  forces a re-painting of todo items.
 	 */
 	Controller.prototype._filter = function (force) {
-		var activeRoute = this._activeRoute.charAt(0).toUpperCase() + this._activeRoute.substr(1);
 
-		// Update the elements on the page, which change with each completed todo
+        var activeRoute = this._activeRoute.charAt(0).toUpperCase() + this._activeRoute.substr(1);
+       
+        // Update the elements on the page, which change with each completed todo
 		this._updateCount();
 
 		// If the last active route isn't "All", or we're switching routes, we
