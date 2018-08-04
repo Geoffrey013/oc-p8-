@@ -12,7 +12,7 @@
 Open `index.html`
 
 # Run tests
-'npm install -d"<br>
+'npm install -d'<br>
 Open `test/specRunner.html`
 
 # Wiki
