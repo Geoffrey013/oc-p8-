@@ -90,10 +90,7 @@ describe('controller', function () {
 
         it('should show active entries', function () {
             // TODO: write test
-            console.log("salut c'est moi qui foire");
-
-            var activeTodo = {title: 'my todo', completed: true};
-
+            var activeTodo = {title: 'my todo', completed: false};
             setUpModel([activeTodo]);
 
             subject.setView('#/active');
@@ -101,39 +98,18 @@ describe('controller', function () {
             expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function));
 
             expect(view.render).toHaveBeenCalledWith('showEntries', [activeTodo]);
-
         });
 
         it('should show completed entries', function () {
-            /*    // TODO: write test
-                setUpModel([]);
+            // TODO: write test
+            var completedTodo = {title: 'my todo', completed: true};
+            setUpModel([completedTodo]);
 
+            subject.setView('#/completed');
 
+            expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
 
-
-
-                expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
-
-                expect(view.render).toHaveBeenCalledWith('showEntries', [{id: 41, title: 'completed to', completed: true}]);
-
-
-            /*
-                //var todos = [{id: 41, title: 'completed todo', completed: true}, {
-                //    id: 42,
-                //    title: 'active todo',
-                //    completed: false
-                //}];
-                var todos = [{id: 41, title: 'completed todo', completed: false}];
-
-
-                setUpModel(todos);
-
-                subject.setView('#/completed');
-
-                expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function));
-
-                expect(view.render).toHaveBeenCalledWith('showEntries', [{id: 41, title: 'completed todo', completed: true}]);
-            */
+            expect(view.render).toHaveBeenCalledWith('showEntries', [completedTodo]);
         });
     });
 

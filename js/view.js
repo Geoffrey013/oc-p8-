@@ -115,7 +115,6 @@
 			},
 			setFilter: function () {
 				self._setFilter(parameter);
-
 			},
 			clearNewTodo: function () {
 				self.$newTodo.value = '';
@@ -135,7 +134,7 @@
 	};
 
 	View.prototype._itemId = function (element) {
-		var li = $parent(element, 'li');
+        var li = $parent(element, 'li');
 		return parseInt(li.dataset.id, 10);
 	};
 
