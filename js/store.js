@@ -40,6 +40,17 @@
 	 *	 // hello: world in their properties
 	 * });
 	 */
+	Store.prototype._generateRandomId = function() {
+        var newId = "";
+        var charset = "0123456789";
+
+        for (var i = 0; i < 6; i++) {
+            newId += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+
+        return newId;
+	};
+
 	Store.prototype.find = function (query, callback) {
         if (!callback) {
 			return;
@@ -95,13 +106,7 @@
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, todos);
 		} else {
-            // Generate and assign an ID
-            var newId = "";
-            var charset = "0123456789";
-
-            for (var i = 0; i < 6; i++) {
-                newId += charset.charAt(Math.floor(Math.random() * charset.length));
-            }
+			var newId = this._generateRandomId();
 
 			updateData.id = parseInt(newId);
 			todos.push(updateData);

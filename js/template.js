@@ -12,14 +12,14 @@
 	};
 
 	var escapeHtmlChar = function (chr) {
-		return htmlEscapes[chr];
+        return htmlEscapes[chr];
 	};
 
 	var reUnescapedHtml = /[&<>"'`]/g;
 	var reHasUnescapedHtml = new RegExp(reUnescapedHtml.source);
 
 	var escape = function (string) {
-		return (string && reHasUnescapedHtml.test(string))
+        return (string && reHasUnescapedHtml.test(string))
 			? string.replace(reUnescapedHtml, escapeHtmlChar)
 			: string;
 	};
