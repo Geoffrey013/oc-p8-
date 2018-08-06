@@ -40,16 +40,19 @@
 	 *	 // hello: world in their properties
 	 * });
 	 */
-	Store.prototype._generateRandomId = function() {
-        var newId = "";
-        var charset = "0123456789";
 
-        for (var i = 0; i < 6; i++) {
-            newId += charset.charAt(Math.floor(Math.random() * charset.length));
+    Store.prototype._generateRandomId = function(todos) {
+        var randomId = Math.floor(Math.random() * 10000000);
+        var todosLength = todos.length;
+
+        for (var i = 0; i < todosLength; i++) {
+            if (randomId === todos[i].id) {
+                this._generateRandomId(todos);
+            }
         }
 
-        return newId;
-	};
+        return randomId;
+    };
 
 	Store.prototype.find = function (query, callback) {
         if (!callback) {
@@ -106,7 +109,7 @@
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, todos);
 		} else {
-			var newId = this._generateRandomId();
+			var newId = this._generateRandomId(todos);
 
 			updateData.id = parseInt(newId);
 			todos.push(updateData);
@@ -127,7 +130,7 @@
 		var todos = data.todos;
 
         for (var i = 0; i < todos.length; i++) {
-            if (todos[i].id == id) {
+            if (todos[i].id === id) {
                 todos.splice(i, 1);
             }
         }
